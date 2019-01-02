@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include <limits.h>
+
 void showBin(unsigned char* p, int len) {
     for (int i = len - 1; i >= 0; --i) {
         for (int j = 7; j >= 0; --j) {
@@ -38,5 +40,17 @@ int main() {
     // exp: 01111100 frac: 1
     // 00111110 01000000 00000000 00000000
     showBinByFloat(0.1875);
+    // float f1 = 0.0, f2 = -0.0;
+    // showBinByFloat(f1);
+    // showBinByFloat(f2);
+    int i3 = 0x7f800000;
+    int i4 = 0xff800000;
+    float *f3 = (float*)(&i3);
+    float *f4 = (float*)(&i4);
+    // float f5 = inf;
+    showBinByFloat(*f3);
+    showBinByFloat(*f4);
+    // 
+    printf("%f %f\n", *f3, *f4);
     return 0;
 }
