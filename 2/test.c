@@ -52,5 +52,10 @@ int main() {
     showBinByFloat(*f4);
     // 
     printf("%f %f\n", *f3, *f4);
+    float f5 = 16777210.0;
+    for (int i = 0; i < 10; ++i) {
+        f5 += 1;
+        printf("%f\n", f5);
+    }
     return 0;
 }
