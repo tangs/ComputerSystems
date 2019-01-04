@@ -52,3 +52,11 @@ void decode1(long *xp, long *yp, long *zp) {
     *zp = b;
     *xp = c;
 }
+
+3.6:
+6 + x
+x + y
+x + 4y
+7 + 9x
+10 + 4y
+9 + x + 2y

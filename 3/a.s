@@ -10,11 +10,9 @@ _fun:                                   ## @fun
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	movl	%edi, -4(%rbp)
-	movl	%esi, -8(%rbp)
-	movl	-4(%rbp), %esi
-	addl	-8(%rbp), %esi
-	movl	%esi, %eax
+	leaq	(%rdi,%rsi,4), %rax
+	leaq	(%rdx,%rdx,2), %rcx
+	leaq	(%rax,%rcx,4), %rax
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -29,17 +27,6 @@ _fun2:                                  ## @fun2
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movl	$3, -4(%rbp)
-	movl	$3, -8(%rbp)
-	movl	-4(%rbp), %edi
-	movl	-8(%rbp), %esi
-	callq	_fun
-	movl	%eax, -12(%rbp)
-	movl	-12(%rbp), %eax
-	addl	$3, %eax
-	movl	%eax, -16(%rbp)
-	addq	$16, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
