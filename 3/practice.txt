@@ -71,3 +71,7 @@ x + 4y
 0x110   0x14
 %rcx    0x0
 %rax    0xFD
+
+3.9:
+salq $4, %rax
+sarq %cl, %rax
