@@ -31,26 +31,14 @@ _main:                                  ## @main
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
+	movq	$0, %rbp
 	leaq	-8(%rbp), %rdx
 	movl	$2, %edi
 	movl	$3, %esi
 	callq	_multstore
 	movq	-8(%rbp), %rsi
 	leaq	L_.str(%rip), %rdi
-	callq	_printf
-	movq	$0x1122334455667788, %rsi
-	leaq	L2_.str(%rip), %rdi
-	callq	_printf
-	movb	$0xFF, %r8b
-	movb	%r8b, %sil
-	leaq	L2_.str(%rip), %rdi
-	callq	_printf
-	movq	$1, %rdi
-	movq	$2, %rsi
-	movq	$3, %rdx
-	callq	_scale
-	movq	%rax, %rsi
-	leaq	L3_.str(%rip), %rdi
+	xorl	%eax, %eax
 	callq	_printf
 	xorl	%eax, %eax
 	addq	$16, %rsp
@@ -77,12 +65,6 @@ _mult2:                                 ## @mult2
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
 	.asciz	"2 * 3 --> %ld\n"
-
-L2_.str:                                 ## @.str
-	.asciz	"%llx\n"
-
-L3_.str:                                 ## @.str
-	.asciz	"%ld\n"
 
 
 .subsections_via_symbols

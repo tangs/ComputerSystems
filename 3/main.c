@@ -12,7 +12,9 @@ void decode1(long *xp, long *yp, long *zp) {
 }
 
 int main() {
-    long d;
+    long c = 0;
+    // decode1(&a, &b, &c);
+    long d = c;
     multstore(2, 3, &d);
     printf("2 * 3 --> %ld\n", d);
     return 0;

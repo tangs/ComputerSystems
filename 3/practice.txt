@@ -77,7 +77,12 @@ salq $4, %rax
 sarq %cl, %rax
 
 3.10:
-y ^ x
+y | x
 t1 >> 3
 ~t2
 z - t3
+
+3.11:
+A.将%rdx值置为0
+B.movq $0, %rdx
+C.3个字节和7个字节
