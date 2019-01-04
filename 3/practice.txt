@@ -75,3 +75,9 @@ x + 4y
 3.9:
 salq $4, %rax
 sarq %cl, %rax
+
+3.10:
+y ^ x
+t1 >> 3
+~t2
+z - t3
