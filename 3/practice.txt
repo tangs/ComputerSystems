@@ -91,6 +91,6 @@ C.3个字节和7个字节
 movq	%rdx, %r8
 movq	%rdi, %rax
 xor		%rdx, %rdx
-divq		%rsi
+divq	%rsi
 movq	%rax, (%r8)
 movq	%rdx, (%rcx)
