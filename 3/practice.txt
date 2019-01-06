@@ -86,3 +86,11 @@ z - t3
 A.将%rdx值置为0
 B.movq $0, %rdx
 C.3个字节和7个字节
+
+3.12:
+movq	%rdx, %r8
+movq	%rdi, %rax
+xor		%rdx, %rdx
+divq		%rsi
+movq	%rax, (%r8)
+movq	%rdx, (%rcx)
