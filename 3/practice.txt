@@ -100,3 +100,9 @@ A   <   int
 B   >=  short
 C   <=  unsigned char  
 D   !=  long or unsigned long or void*
+
+3.14:
+A   <   long or unsigned long or void*
+B   ==  short or unsigned short
+C   >  unsigned char
+D   !=  int or unsigned int
