@@ -94,3 +94,9 @@ xor		%rdx, %rdx
 divq	%rsi
 movq	%rax, (%r8)
 movq	%rdx, (%rcx)
+
+3.13:
+A   <   int
+B   >=  short
+C   <=  unsigned char  
+D   !=  long or unsigned long or void*
