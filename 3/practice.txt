@@ -102,7 +102,7 @@ C   <=  unsigned char
 D   !=  long or unsigned long or void*
 
 3.14:
-A   <   long or unsigned long or void*
+A   >=  long 
 B   ==  short or unsigned short
-C   >  unsigned char
+C   >   unsigned char
 D   !=  int or unsigned int
