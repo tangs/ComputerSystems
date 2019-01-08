@@ -13,6 +13,15 @@ void decode1(long *xp, long *yp, long *zp) {
     *xp = c;
 }
 
+void fun(int* a) {
+    if (*a > 0) {
+        *a = 4;
+    } else {
+        *a = 6;
+    }
+
+}
+
 void uchar2long(unsigned char* v1, long* v2) {
     *v2 = (long)(*v1);
 }

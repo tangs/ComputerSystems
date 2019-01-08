@@ -106,3 +106,9 @@ A   >=  long
 B   ==  short or unsigned short
 C   >   unsigned char
 D   !=  int or unsigned int
+
+3.15:
+A   4003fe
+B   400431-0x0C=400425
+C   400543  400545
+D   4005ed-8d=400560

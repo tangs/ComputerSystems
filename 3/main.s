@@ -1,14 +1,8 @@
 	.section	__TEXT,__text,regular,pure_instructions
 	.build_version macos, 10, 14
-<<<<<<< HEAD
-	.globl	_uchar2long             ## -- Begin function uchar2long
-	.p2align	4, 0x90
-_uchar2long:                            ## @uchar2long
-=======
 	.globl	_decode1                ## -- Begin function decode1
 	.p2align	4, 0x90
 _decode1:                               ## @decode1
->>>>>>> b69938cc20794fba52f50db8da4fa066832f9437
 	.cfi_startproc
 ## %bb.0:
 	pushq	%rbp
@@ -16,17 +10,74 @@ _decode1:                               ## @decode1
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-<<<<<<< HEAD
-	movzbl	(%rdi), %eax
-	movq	%rax, (%rsi)
-=======
-	movq	(%rdi), %rax
-	movq	(%rsi), %rcx
-	movq	(%rdx), %r8
-	movq	%rax, (%rsi)
-	movq	%rcx, (%rdx)
-	movq	%r8, (%rdi)
->>>>>>> b69938cc20794fba52f50db8da4fa066832f9437
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	%rdx, -24(%rbp)
+	movq	-8(%rbp), %rdx
+	movq	(%rdx), %rdx
+	movq	%rdx, -32(%rbp)
+	movq	-16(%rbp), %rdx
+	movq	(%rdx), %rdx
+	movq	%rdx, -40(%rbp)
+	movq	-24(%rbp), %rdx
+	movq	(%rdx), %rdx
+	movq	%rdx, -48(%rbp)
+	movq	-32(%rbp), %rdx
+	movq	-16(%rbp), %rsi
+	movq	%rdx, (%rsi)
+	movq	-40(%rbp), %rdx
+	movq	-24(%rbp), %rsi
+	movq	%rdx, (%rsi)
+	movq	-48(%rbp), %rdx
+	movq	-8(%rbp), %rsi
+	movq	%rdx, (%rsi)
+	popq	%rbp
+	retq
+	.cfi_endproc
+                                        ## -- End function
+	.globl	_fun                    ## -- Begin function fun
+	.p2align	4, 0x90
+_fun:                                   ## @fun
+	.cfi_startproc
+## %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movq	%rdi, -8(%rbp)
+	movq	-8(%rbp), %rdi
+	cmpl	$0, (%rdi)
+	jle	LBB1_2
+## %bb.1:
+	movq	-8(%rbp), %rax
+	movl	$4, (%rax)
+	jmp	LBB1_3
+LBB1_2:
+	movq	-8(%rbp), %rax
+	movl	$6, (%rax)
+LBB1_3:
+	popq	%rbp
+	retq
+	.cfi_endproc
+                                        ## -- End function
+	.globl	_uchar2long             ## -- Begin function uchar2long
+	.p2align	4, 0x90
+_uchar2long:                            ## @uchar2long
+	.cfi_startproc
+## %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rsi
+	movzbl	(%rsi), %eax
+	movl	%eax, %esi
+	movq	-16(%rbp), %rdi
+	movq	%rsi, (%rdi)
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -41,57 +92,66 @@ _main:                                  ## @main
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-<<<<<<< HEAD
-	pushq	%r15
-	pushq	%r14
-	pushq	%rbx
-	subq	$24, %rsp
-	.cfi_offset %rbx, -40
-	.cfi_offset %r14, -32
-	.cfi_offset %r15, -24
-	movb	$0, -25(%rbp)
-	movq	$0, -40(%rbp)
-	leaq	-25(%rbp), %rbx
-	leaq	-40(%rbp), %r14
-	movq	%rbx, %rdi
-	movq	%r14, %rsi
+	subq	$96, %rsp
+	leaq	-5(%rbp), %rdi
+	leaq	-16(%rbp), %rsi
+	movl	$0, -4(%rbp)
+	movb	$0, -5(%rbp)
+	movq	$0, -16(%rbp)
 	callq	_uchar2long
-	movq	-40(%rbp), %rsi
-	leaq	L_.str(%rip), %r15
-	xorl	%eax, %eax
-	movq	%r15, %rdi
-	callq	_printf
-	movb	$-128, -25(%rbp)
-	movq	%rbx, %rdi
-	movq	%r14, %rsi
-	callq	_uchar2long
-	movq	-40(%rbp), %rsi
-	xorl	%eax, %eax
-	movq	%r15, %rdi
-	callq	_printf
-	movb	$-1, -25(%rbp)
-	movq	%rbx, %rdi
-	movq	%r14, %rsi
-	callq	_uchar2long
-	movq	-40(%rbp), %rsi
-=======
-	subq	$16, %rsp
-	movq	$0, %rbp
-	leaq	-8(%rbp), %rdx
-	movl	$2, %edi
-	movl	$3, %esi
-	callq	_multstore
-	movq	-8(%rbp), %rsi
 	leaq	L_.str(%rip), %rdi
->>>>>>> b69938cc20794fba52f50db8da4fa066832f9437
-	xorl	%eax, %eax
-	movq	%r15, %rdi
+	movq	-16(%rbp), %rsi
+	movb	$0, %al
 	callq	_printf
-	xorl	%eax, %eax
-	addq	$24, %rsp
-	popq	%rbx
-	popq	%r14
-	popq	%r15
+	leaq	-5(%rbp), %rdi
+	leaq	-16(%rbp), %rsi
+	movb	$-128, -5(%rbp)
+	movl	%eax, -68(%rbp)         ## 4-byte Spill
+	callq	_uchar2long
+	leaq	L_.str(%rip), %rdi
+	movq	-16(%rbp), %rsi
+	movb	$0, %al
+	callq	_printf
+	leaq	-5(%rbp), %rdi
+	leaq	-16(%rbp), %rsi
+	movb	$-1, -5(%rbp)
+	movl	%eax, -72(%rbp)         ## 4-byte Spill
+	callq	_uchar2long
+	leaq	L_.str(%rip), %rdi
+	movq	-16(%rbp), %rsi
+	movb	$0, %al
+	callq	_printf
+	movl	$2, %ecx
+	movl	%ecx, %edi
+	movl	$3, %ecx
+	movl	%ecx, %esi
+	leaq	-32(%rbp), %rdx
+	movq	$0, -24(%rbp)
+	movq	-24(%rbp), %r8
+	movq	%r8, -32(%rbp)
+	movl	%eax, -76(%rbp)         ## 4-byte Spill
+	callq	_multstore
+	leaq	L_.str.1(%rip), %rdi
+	movq	-32(%rbp), %rsi
+	movb	$0, %al
+	callq	_printf
+	leaq	-56(%rbp), %rdx
+	leaq	-64(%rbp), %rcx
+	movq	$20, -40(%rbp)
+	movq	$7, -48(%rbp)
+	movq	-40(%rbp), %rdi
+	movq	-48(%rbp), %rsi
+	movl	%eax, -80(%rbp)         ## 4-byte Spill
+	callq	_remdiv
+	leaq	L_.str.2(%rip), %rdi
+	movq	-56(%rbp), %rsi
+	movq	-64(%rbp), %rdx
+	movb	$0, %al
+	callq	_printf
+	xorl	%r9d, %r9d
+	movl	%eax, -84(%rbp)         ## 4-byte Spill
+	movl	%r9d, %eax
+	addq	$96, %rsp
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -106,8 +166,11 @@ _mult2:                                 ## @mult2
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	imulq	%rsi, %rdi
-	movq	%rdi, %rax
+	movq	%rdi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
+	movq	-8(%rbp), %rsi
+	imulq	-16(%rbp), %rsi
+	movq	%rsi, %rax
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -115,6 +178,12 @@ _mult2:                                 ## @mult2
 	.section	__TEXT,__cstring,cstring_literals
 L_.str:                                 ## @.str
 	.asciz	"%ld\n"
+
+L_.str.1:                               ## @.str.1
+	.asciz	"2 * 3 --> %ld\n"
+
+L_.str.2:                               ## @.str.2
+	.asciz	"%ld %ld\n"
 
 
 .subsections_via_symbols
