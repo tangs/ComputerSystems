@@ -42,3 +42,67 @@ unsigned char       long            movzbq (%rdi),%rax  movq %rax,(%rsi)
 int                 char            movb (%rdi),%al     movb %al,(%rsi)
 unsigned            unsigned char   movb (%rdi),%al     movb %al,(%rsi)
 char                short           movsbw (%rdi),%ax   movw %ax,(%rsi) 
+
+3.5:
+void decode1(long *xp, long *yp, long *zp) {
+    long a = *xp;
+    long b = *yp;
+    long c = *zp;
+    *yp = a;
+    *zp = b;
+    *xp = c;
+}
+
+3.6:
+6 + x
+x + y
+x + 4y
+7 + 9x
+10 + 4y
+9 + x + 2y
+
+3.7:
+5x + 2y + 8z
+
+3.8:
+0x100   0x100
+0x108   0xA8
+0x118   0x110
+0x110   0x14
+%rcx    0x0
+%rax    0xFD
+
+3.9:
+salq $4, %rax
+sarq %cl, %rax
+
+3.10:
+y | x
+t1 >> 3
+~t2
+z - t3
+
+3.11:
+A.将%rdx值置为0
+B.movq $0, %rdx
+C.3个字节和7个字节
+
+3.12:
+movq	%rdx, %r8
+movq	%rdi, %rax
+xor		%rdx, %rdx
+divq	%rsi
+movq	%rax, (%r8)
+movq	%rdx, (%rcx)
+
+3.13:
+A   <   int
+B   >=  short
+C   <=  unsigned char  
+D   !=  long or unsigned long or void*
+
+3.14:
+A   >=  long 
+B   ==  short or unsigned short
+C   >   unsigned char
+D   !=  int or unsigned int
