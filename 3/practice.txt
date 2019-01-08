@@ -114,16 +114,16 @@ C   400543  400545
 D   4005ed-8d=400560
 
 3.16:
-void cond(long a, long *p)
-a in %rdi, p in %rsi
-cond:
-testq   %rsi, %rsi          // test q
-je      .L1                 // if 0 goto .L1
-compq   %rdi, (%rsi)        // cmp *p a
-jge     .L1                 // if >= goto .L1
-movq    %rid, (%rsi)        // *q = a
-.L1:
-req: ret                    // return
+    void cond(long a, long *p)
+    a in %rdi, p in %rsi
+    cond:
+    testq   %rsi, %rsi          // test q
+    je      .L1                 // if 0 goto .L1
+    compq   %rdi, (%rsi)        // cmp *p a
+    jge     .L1                 // if >= goto .L1
+    movq    %rid, (%rsi)        // *q = a
+    .L1:
+    req: ret                    // return
 
 A.
     void cond(long a, long *p) {
@@ -152,3 +152,36 @@ A.
         return result;
     }
 B.没想出
+
+3.18:
+    test:
+        leaq    (%rdi, %rsi), %rax      // val = x + y
+        addq    %rdx, %rax              // val += z
+        cmpq    $-3, %rdi               // cmp x -3
+        jge     .L2                     // if >= goto .L2
+        cmpq    %rdx, %rsi              // cmp y z
+        jge     .L3                     // if >= goto .L3
+        movq    %rdi, %rax              // val = x
+        imulq   %rsi, %rax              // val *= y
+    .L3:
+        movq    %rsi, %rax              // val = y
+        imulq   %rdx, %rax              // val *= z
+    .L2:
+        cmpq    $2, %rdi                // cmp x 2
+        jle     .L4                     // if <= goto .L4
+        movq    %rdi, %rax              // val = x
+        imulq   %rdx, %rax              // val *= z
+    .L4:
+        req; ret                        // return
+
+    long test(long x, long y, long z) {
+        long val = x + y + z;
+        if (x < -3) {
+            if (y < z)
+                val = x * y;
+            else
+                val = y * z;
+        } else if (x > 2)
+            val = x * z;
+        return val;
+    }
