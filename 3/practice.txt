@@ -112,3 +112,43 @@ A   4003fe
 B   400431-0x0C=400425
 C   400543  400545
 D   4005ed-8d=400560
+
+3.16:
+void cond(long a, long *p)
+a in %rdi, p in %rsi
+cond:
+testq   %rsi, %rsi          // test q
+je      .L1                 // if 0 goto .L1
+compq   %rdi, (%rsi)        // cmp *p a
+jge     .L1                 // if >= goto .L1
+movq    %rid, (%rsi)        // *q = a
+.L1:
+req: ret                    // return
+
+A.
+    void cond(long a, long *p) {
+        if (p == 0)
+            goto ret;
+        if (*p >= a)
+            goto ret;
+        *p = a;
+    ret:
+        return;
+    }
+B.因为C语言中的一个if语句中包含两个条件判断.
+
+3.17:
+A.
+    long absdiff_se(long x, long y) {
+        long result;
+        if (x < y)
+            goto x_l_y;
+        ge_cnt++;
+        result = x - y;
+        return result;
+    x_l_y:
+        lt_cnt++;
+        result = y - x;
+        return result;
+    }
+B.没想出
