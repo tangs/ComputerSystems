@@ -210,4 +210,32 @@ B.没想出
     A. OP / 
 
 3.21:
-    
+    long test(long x, long y);
+    x in %rdi, y in %rsi
+  test:
+    leaq    0(, %rdi, 8), %rax          // ret = 8 * x
+    testq   %rsi, %rsi                  // test y
+    jle     .L2                         // if <= jump .L2
+    movq    %rsi, %rax                  // ret = y
+    subq    %rdi, %rax                  // ret = ret - x
+    movq    %rdi, %rdx                  // %rdx = x
+    andq    %rsi, %rdx                  // %rdx = rdx & y
+    cmpq    %rsi, %rdi                  // cmp x - y
+    cmovge  %rdx, %rax                  // if >= ret = %rdx
+    ret
+  .L2:
+    addq    %rsi, %rdi                  // x = x + y
+    cmpq    $-2, %rsi                   // cmp y - (-2)
+    cmovle  %rdi, %rax                  // if <= ret = x
+    ret
+
+    long val = 8 * x;
+    if (y > 0) {
+        if (x >= y)
+            ret = x & y;
+        else
+            ret = y - x;
+    } else if (y <= -2)
+        ret = x + y;
+
+
