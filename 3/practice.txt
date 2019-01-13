@@ -185,3 +185,13 @@ B.没想出
             val = x * z;
         return val;
     }
+
+3.19:
+    Tok = 16 
+    Tran =  31 
+    A.
+        Tmp = 2 * (Tran - Tok) = 30
+    B.
+        Tran = (Tok + Terr) / 2
+        Terr = 2 * Tran - Tok = 2 * 31 - 16 = 46
+        Terr = Tok + Tmp = 16 + 30 = 46
