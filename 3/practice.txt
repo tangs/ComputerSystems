@@ -195,3 +195,19 @@ B.没想出
         Tran = (Tok + Terr) / 2
         Terr = 2 * Tran - Tok = 2 * 31 - 16 = 46
         Terr = Tok + Tmp = 16 + 30 = 46
+
+3.20:
+    ret = x + 7
+    x & x
+    if (x >= 0)  ret = x
+    ret >>= 3
+
+    if (x >= 0)
+        ret x >> 3;
+    else
+        ret (x + 7) >> 3;
+
+    A. OP / 
+
+3.21:
+    
