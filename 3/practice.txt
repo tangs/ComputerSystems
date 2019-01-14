@@ -238,4 +238,30 @@ B.没想出
     } else if (y <= -2)
         ret = x + y;
 
-
+3.23:
+    C.
+        ret = x
+        %rcx = x
+        %rcx *= x
+        %rdx = 2 * x
+    .L2:
+        ret += %rcx + 1
+        %rdx = %rdx - 1
+        if (%rdx > 0)
+            goto .L2
+    A.
+        x: %rdi
+        y: %rcx
+        n: %rdx
+    
+3.24:
+    long loop_while(long a, long b)
+    {
+        long result = 1;
+        while (a < b) {
+            result = result * (a + b);
+            a = a + 1;
+        }
+        return reslut;
+    }
+    
