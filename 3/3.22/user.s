@@ -30,15 +30,20 @@ _is_mut_overflow:                                  ## @is_mut_overflow
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	movq	$0, %rax
+	movq	$0, %r8
 	testq	%rdi, %rdi
 	je		.L2
 	testq	%rsi, %rsi
 	je		.L2
-	movq	%rdi, %r8
-	imulq	%rsi, %r8
-	idivq	
+	movq	%rdi, %rax
+	imulq	%rsi, %rax
+	cqto
+	idivq 	%rdi
+	cmpq	%rax, %rsi
+	jne		.L2
+	movq	$1, %r8
 .L2:
+	movq	%r8, %rax
 	popq	%rbp
 	retq
 	.cfi_endproc
@@ -54,9 +59,17 @@ _get_max:                                  ## @get_max
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
 	movq	$1, %rdi
+	movq	$1, %rsi
 .L3:
-	callq	_fact_do
+	movq	%rdi, %rax
+	imulq	%rsi, %rax
 
+	movq	%rax, %rsi
+	incq	%rdi
+	callq	_is_mut_overflow
+	testq	%rax, %rax
+	jne		.L3
+	leaq	-1(%rdi), %rax
 	popq	%rbp
 	retq
 	.cfi_endproc
