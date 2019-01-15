@@ -265,3 +265,13 @@ B.没想出
         return reslut;
     }
     
+3.25:
+    long loop_while2(long a, long b)
+    {
+        long result = b;
+        while (b > 0) {
+            reslut *= a;
+            b -= a;
+        }
+        return result;
+    }
