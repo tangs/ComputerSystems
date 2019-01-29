@@ -303,12 +303,12 @@ guarded-do;
     long fact_for(long n) {
         long result = 1;
         long i = 2;
-        if (i >= n)
+        if (i > n)
             goto done;
     loop:
         result *= i;
         i += 1; 
-        if (i < n)
+        if (i <= n)
             goto loop;
     done:
         return result;
