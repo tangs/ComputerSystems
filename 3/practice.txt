@@ -326,6 +326,26 @@ guarded-do;
     C.按位翻转.
 
 3.29:
+    A.
+    long sum = 0;
+    long i;
+    while (i < 10) {
+        if (i & 1)
+            continue;
+        sum += i;
+        i++;
+    }
+    死循环
+    B.
+    long sum = 0;
+    long i;
+    while (i < 10) {
+        if (i & 1)
+            goto .Update;
+        sum += i;
+    .Update:
+        i++;
+    }
 
 3.30:
     A.
