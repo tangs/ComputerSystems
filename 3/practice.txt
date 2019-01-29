@@ -313,3 +313,14 @@ guarded-do;
     done:
         return result;
     }
+
+3.28:
+    A.
+    for (i = 64; i != 0; --i) {
+        long y = x & 1;
+        val += val; // val <<= 1;
+        val |= y;
+        x >>= 1;
+    }
+    B.因为i的初始值保证了第一次条件判断结果肯定为真.
+    C.按位翻转.
