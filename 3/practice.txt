@@ -288,3 +288,28 @@ B.没想出
         return 1 & val;
     }
     C.计算x的二进制位为1的总数是否为奇数.
+
+3.27:
+while:
+    long fact_for(long n) {
+        long result = 1;
+        long i = 2;
+        while (i <= n) {
+            result *= i;
+        }
+        return result;
+    }
+guarded-do;
+    long fact_for(long n) {
+        long result = 1;
+        long i = 2;
+        if (i >= n)
+            goto done;
+    loop:
+        result *= i;
+        i += 1; 
+        if (i < n)
+            goto loop;
+    done:
+        return result;
+    }
