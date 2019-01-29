@@ -324,3 +324,20 @@ guarded-do;
     }
     B.因为i的初始值保证了第一次条件判断结果肯定为真.
     C.按位翻转.
+
+3.29:
+
+3.30:
+    A.
+    .quad   .L9     // -1
+    .quad   .L5     // 0
+    .quad   .L6     // 1
+    .quad   .L7     // 2
+    .quad   .L2     // 
+    .quad   .L7     // 4
+    .quad   .L8     // 5
+    .quad   .L2     // 
+    .quad   .L5     // 7
+    B.
+        0   7
+        2   4
