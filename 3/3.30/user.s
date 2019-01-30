@@ -18,6 +18,9 @@ _fact_switch:                                  ## @fact_switch
 	leaq	LJTI0_0(%rip), %rcx
 	movq	(%rcx,%rdi,8), %rdx
 	addq	%rcx, %rdx
+	#movq	(,%rdi,8), %rdx
+	#addq	%rcx, %rdx
+	#addq	%rcx, %rdx
 	jmpq	*%rdx
 .L5:
 	movq	$5, %rax

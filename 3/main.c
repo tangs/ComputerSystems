@@ -4,6 +4,7 @@ void multstore(long, long, long *);
 void remdiv(long, long, long *, long*);
 void uremdiv(unsigned long, unsigned long, unsigned long *, unsigned long*);
 long fact_do(long);
+long func_paras(long, long, long, long, long, long, long);
 
 void decode1(long *xp, long *yp, long *zp) {
     long a = *xp;
@@ -51,9 +52,10 @@ int main() {
     // long l3, l4;
     // remdiv(l1, l2, &l3, &l4);
     // printf("%ld %ld\n", l3, l4);
-    for (long i = 0; i < 10; ++i) {
-        printf("!%ld = %ld\n", i, fact_do(i));
-    }
+    // for (long i = 0; i < 10; ++i) {
+    //     printf("!%ld = %ld\n", i, fact_do(i));
+    // }
+    printf("%ld\n", func_paras(1, 2, 3, 4, 5, 6, 7));
     return 0;
 }
 

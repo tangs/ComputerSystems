@@ -59,5 +59,26 @@ LJTI0_0:
 	.long	L0_0_set_3
 	.end_data_region
                                         ## -- End function
+	.globl	_func10                 ## -- Begin function func10
+	.p2align	4, 0x90
+_func10:                                ## @func10
+	.cfi_startproc
+## %bb.0:
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	leaq	(%rdi,%rsi), %rax
+	addq	%rdx, %rax
+	addq	%rcx, %rax
+	addq	%r8, %rax
+	addq	%r9, %rax
+	addq	16(%rbp), %rax
+	addq	24(%rbp), %rax
+	popq	%rbp
+	retq
+	.cfi_endproc
+                                        ## -- End function
 
 .subsections_via_symbols

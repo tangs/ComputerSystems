@@ -383,3 +383,15 @@ guarded-do;
         }
         *dest = val;
     }
+
+3.32:
+    标号    PC          指令        %rdi        %rsi        %rax    %rsp                *%rsp           描述
+    M1      0x400560    callq       10          -           -       0x7fffffffe820      -           调用first(10)   
+    F1      0x400548    lea         10          -           -       0x7fffffffe818      0x400565    进入first
+    F2      0x40054c    sub         10          11          -       0x7fffffffe818      0x400565    
+    F3      0x400550    callq       9           11          -       0x7fffffffe818      0x400565    调用last(9, 11)
+    L1      0x400540    mov         9           11          -       0x7fffffffe810      0x400555    进入last
+    L2      0x400543    imul        9           11          9       0x7fffffffe810      0x400555
+    L3      0x400547    retq        9           11          99      0x7fffffffe810      0x400555    从last中返回99
+    F4      0x400555    reqz retq   9           11          99      0x7fffffffe818      0x400565    从first中返回99
+    M2      0x400565    mov         9           11          99      0x7fffffffe820      -

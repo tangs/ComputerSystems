@@ -77,4 +77,21 @@ _fact_do:                                  ## @fact_do
 	retq
 	.cfi_endproc
                                         ## -- End function
+	.globl	_func_paras                   ## -- Begin function func_paras
+	.p2align	4, 0x90
+_func_paras:                                  ## @func_paras
+	.cfi_startproc
+## %bb.0:
+	pushq	%rbp
+	movq 	%rdi, %rax
+	addq 	%rsi, %rax
+	addq 	%rdx, %rax
+	addq 	%rcx, %rax
+	addq 	%r8, %rax
+	addq 	%r9, %rax
+	addq	16(%rsp), %rax
+	popq	%rbp
+	retq
+	.cfi_endproc
+                                        ## -- End function
 .subsections_via_symbols
