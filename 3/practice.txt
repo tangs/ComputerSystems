@@ -406,6 +406,8 @@ guarded-do;
     C.被调用者保存寄存器只有6个
     
 3.35:
+    A.x
+    B.
     long rfun(unsigned long x) {
         if (x == 0)
             return 0;
