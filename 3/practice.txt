@@ -395,3 +395,8 @@ guarded-do;
     L3      0x400547    retq        9           11          99      0x7fffffffe810      0x400555    从last中返回99
     F4      0x400555    reqz retq   9           11          99      0x7fffffffe818      0x400565    从first中返回99
     M2      0x400565    mov         9           11          99      0x7fffffffe820      -
+
+3.33:
+    %rdi        %rsi        %rdx        %rcx
+    a(int)      b(short)    u(long*)     v(char*)
+    
