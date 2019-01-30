@@ -10,28 +10,54 @@ _func:                                  ## @func
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register %rbp
-	decl	%edi
-	cmpl	$3, %edi
-	ja	LBB0_2
+                                        ## kill: def %edi killed %edi def %rdi
+	movl	$1, %eax
+	addl	$-10, %edi
+	cmpl	$4, %edi
+	ja	LBB0_6
 ## %bb.1:
-	movslq	%edi, %rax
-	leaq	l_switch.table.func(%rip), %rcx
-	movq	(%rcx,%rax,8), %rax
+	leaq	LJTI0_0(%rip), %rcx
+	movslq	(%rcx,%rdi,4), %rdx
+	addq	%rcx, %rdx
+	jmpq	*%rdx
+LBB0_2:
+	xorl	%eax, %eax
+	callq	_func2
+	leaq	(%rax,%rax,2), %rax
 	popq	%rbp
 	retq
-LBB0_2:
-	movl	$1, %eax
+LBB0_4:
+	xorl	%eax, %eax
+	callq	_func3
+	leaq	3500000(%rax,%rax,4), %rax
+	popq	%rbp
+	retq
+LBB0_5:
+	movabsq	$45451321311, %rax      ## imm = 0xA951C1FDF
+LBB0_6:
+	popq	%rbp
+	retq
+LBB0_3:
+	xorl	%eax, %eax
+	callq	_func1
+	shlq	$2, %rax
 	popq	%rbp
 	retq
 	.cfi_endproc
+	.p2align	2, 0x90
+	.data_region jt32
+L0_0_set_2 = LBB0_2-LJTI0_0
+L0_0_set_6 = LBB0_6-LJTI0_0
+L0_0_set_4 = LBB0_4-LJTI0_0
+L0_0_set_5 = LBB0_5-LJTI0_0
+L0_0_set_3 = LBB0_3-LJTI0_0
+LJTI0_0:
+	.long	L0_0_set_2
+	.long	L0_0_set_6
+	.long	L0_0_set_4
+	.long	L0_0_set_5
+	.long	L0_0_set_3
+	.end_data_region
                                         ## -- End function
-	.section	__TEXT,__const
-	.p2align	4               ## @switch.table.func
-l_switch.table.func:
-	.quad	3                       ## 0x3
-	.quad	3500005                 ## 0x3567e5
-	.quad	45451321311             ## 0xa951c1fdf
-	.quad	4                       ## 0x4
-
 
 .subsections_via_symbols

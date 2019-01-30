@@ -12,8 +12,13 @@ _fact_switch:                                  ## @fact_switch
 	.cfi_def_cfa_register %rbp
 	addq 	$1, %rdi
 	cmpq	$8, %rdi
+	movq	$0, %rax
 	ja		.L2
-	#jmp		*.L4(,%rdi,8)
+	#jmp		*LJTI0_0(,%rdi,8)
+	leaq	LJTI0_0(%rip), %rcx
+	movq	(%rcx,%rdi,8), %rdx
+	addq	%rcx, %rdx
+	jmpq	*%rdx
 .L5:
 	movq	$5, %rax
 	jmp		.L2
@@ -33,17 +38,27 @@ _fact_switch:                                  ## @fact_switch
 	popq	%rbp
 	retq
 	.cfi_endproc
+	.p2align	4, 0x90
+	.data_region jt32
+L0_0_set_0 = .L5-LJTI0_0
+L0_0_set_1 = .L5-LJTI0_0
+L0_0_set_2 = .L5-LJTI0_0
+L0_0_set_3 = .L2-LJTI0_0
+L0_0_set_4 = .L6-LJTI0_0
+L0_0_set_5 = .L6-LJTI0_0
+L0_0_set_6 = .L7-LJTI0_0
+L0_0_set_7 = .L2-LJTI0_0
+L0_0_set_8 = .L8-LJTI0_0
+LJTI0_0:
+	.quad	L0_0_set_0			# -1
+	.quad	L0_0_set_1			# 0
+	.quad	L0_0_set_2			# 1
+	.quad	L0_0_set_3			# 2
+	.quad	L0_0_set_4
+	.quad	L0_0_set_5			# 4
+	.quad	L0_0_set_6			# 5
+	.quad	L0_0_set_7
+	.quad	L0_0_set_8			# 7
+	.end_data_region
                                         ## -- End function
-	.section	__TEXT,__const
-	.align 8
-.L4:
-	.quad	.L9			# -1
-	.quad	.L5			# 0
-	.quad	.L6			# 1
-	.quad	.L7			# 2
-	.quad	.L2
-	.quad	.L7			# 4
-	.quad	.L8			# 5
-	.quad	.L2
-	.quad	.L5			# 7
 .subsections_via_symbols
