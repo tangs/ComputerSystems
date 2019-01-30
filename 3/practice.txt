@@ -399,4 +399,9 @@ guarded-do;
 3.33:
     %rdi        %rsi        %rdx        %rcx
     a(int)      b(short)    u(long*)     v(char*)
+
+3.34:
+    A.a0 a1 a2 a3 a4 a5
+    B.a6 a7
+    C.被调用者保存寄存器只有6个
     
