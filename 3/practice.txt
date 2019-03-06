@@ -415,3 +415,11 @@ guarded-do;
         long rv = rfun(nx);
         return x + rv;
     }
+
+3.36:
+    数组    元素大小    整个数组的大小  起始地址    元素i
+    S       2           14          Xs          Xs + i * 2
+    T       8           24          Xt          Xt + i * 8
+    U       8           48          Xu          Xu + i * 8
+    V       4           32          Xv          Xv + i * 4
+    W       8           32          Xw          Xw + i * 8
