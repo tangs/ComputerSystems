@@ -431,3 +431,19 @@ guarded-do;
     &S[i]       short*      Xs + 2*i            leaq (%rdx, %rcx, 2), %rax
     S[4*i + 1]  short       M[Xs + 8*i + 2]     movw 2(%rdx, %rcx, 8), %rax
     S + i - 5   short*      Xs + 2*i - 10       leaq -10(%rdx, %rcx, 2), %rax
+
+3.38:
+    long sum_element(long i, longj)
+    i in %rdi, j in %rsi
+    sum_element:
+        leaq    0(,%rdi,8), %rdx        // %rdx = 8*i
+        subq    %rdi, %rdx              // %rdx -= i                = 7*i
+        addq    %rsi, %rdx              // %rdx += j                = 7*i +j
+        leaq    (%rsi,%rsi,4), %rax     // %rax = 5*j               = 5*j
+        addq    %rax, %rdi              // %rdi += %rax             = i + 5*j
+        movq    Q(,%rdi,8), %rax        // %rax = M[Q + 8*%rdi]     = 8*(i + 5*j)
+        addq    P(,%rdx,8), %rax        // %rax += M[P + 8*%rdx]    += 8*(7*i + j)
+        ret
+    N = 7
+    M = 5
+    
