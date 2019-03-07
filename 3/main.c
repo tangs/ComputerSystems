@@ -56,6 +56,10 @@ int main() {
     //     printf("!%ld = %ld\n", i, fact_do(i));
     // }
     printf("%ld\n", func_paras(1, 2, 3, 4, 5, 6, 7));
+    int data[100];
+    printf("%ld\n", (&data[10] - data));
+    printf("%ld\n", ((long)&data[10] - (long)data));
+    printf("%p %p\n", &data[10], data);
     return 0;
 }
 

@@ -423,3 +423,11 @@ guarded-do;
     U       8           48          Xu          Xu + i * 8
     V       4           32          Xv          Xv + i * 4
     W       8           32          Xw          Xw + i * 8
+
+3.37:
+    exp         type        value               assembly
+    S + 1       short*      Xs + 2              leaq 2(%rdx), %rax
+    S[3]        short       M[Xs + 6]           movw 6(%rdx), %ax
+    &S[i]       short*      Xs + 2*i            leaq (%rdx, %rcx, 2), %rax
+    S[4*i + 1]  short       M[Xs + 8*i + 2]     movw 2(%rdx, %rcx, 8), %rax
+    S + i - 5   short*      Xs + 2*i - 10       leaq -10(%rdx, %rcx, 2), %rax
