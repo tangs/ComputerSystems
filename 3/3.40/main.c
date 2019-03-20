@@ -19,7 +19,7 @@ int var_ele(long n, int A[n][n], long i, long j) {
 }
 
 int main() {
-    int a[N][N] = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
+    int a[N][N] = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
     fix_set_diag_opt(a, 10);
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
