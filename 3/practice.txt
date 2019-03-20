@@ -452,3 +452,12 @@ guarded-do;
     Aptr = &X[i][0] = Xa + 4 * (16 * i + 0) = Xa + 64 * i
     Bptr = &B[0][k] = Xb + 4 * (16 * 0 + k) = Xb + 4 * k
     Bend = &B[N][k] = Xb + 4 * (16 * 16 + k) = Xb + 1024 + 4 * k
+
+3.40:
+    void fix_set_diag_opt(fix_matrix A, int val) {
+        long i = 0;
+        while (i < N * N) {
+            *(A + i) = val;
+            i += N + 1;
+        }
+    }
