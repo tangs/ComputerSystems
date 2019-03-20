@@ -6,7 +6,8 @@ typedef int fix_matrix[N][N];
 void fix_set_diag_opt(fix_matrix A, int val) {
     int* base = &A[0][0];
     long i = 0;
-    while (i < N * N) {
+    int end = N * N;
+    while (i < end) {
         *(base + i) = val;
         i += N + 1;
     }
