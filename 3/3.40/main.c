@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define N 4
 typedef int fix_matrix[N][N];
@@ -13,6 +14,10 @@ void fix_set_diag_opt(fix_matrix A, int val) {
     }
 }
 
+int var_ele(long n, int A[n][n], long i, long j) {
+    return A[i][j];
+}
+
 int main() {
     int a[N][N] = {{1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}};
     fix_set_diag_opt(a, 10);
@@ -22,5 +27,12 @@ int main() {
         }
         printf("\n");
     }
+    int b = 3;
+    int arr[b][b];
+    int len = b * b;
+    memset(arr, 1, len * sizeof(int));
+    printf("%d \n", var_ele(3, arr, 1, 1));
+    printf("%d \n", var_ele(3, arr, 1, 1) == 0x01010101);
+    
     return 0;
 }
