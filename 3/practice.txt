@@ -494,3 +494,20 @@ guarded-do;
     up->t2.a            int*        movq %rdi,(%rsi)
     up->t2.a[up->t1.u]  int         movq (%rdi),%rax    movl (%rdi, %rax, 4),%eax   movl %eax,(%rsi)
     *up->t2.p           char        movq 8(%rdi),%rax   movb (%rax),%al             movb %al,(%sil)
+
+3.44:
+    A.
+        0(4)    4(1)    8(4)    12(1)   16(4)
+        int     char    int     char
+    B.
+        0(4)    4(1)    5(1)    8(8)    16(8)
+        int     char    char    long
+    C.
+        0(6)        6(3)        10(2)
+        short[3]    char[3]
+    D.
+        0(10)       16(24)       40(8)
+        short[5]    char*[3]
+    E.
+        0(20)           24(16)      40(8)
+        struct P3[2]    struct P2
