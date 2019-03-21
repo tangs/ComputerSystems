@@ -474,3 +474,17 @@ guarded-do;
         sp->s.y
         &(sp->s.x)
         sp->p
+
+3.42:
+    A.
+    long fun(struct ELE *ptr) {
+        long ret = 0;
+        while (ptr) {
+            ret += ptr->v;
+            ptr = ptr->p;
+        }
+        return ret;
+    }
+    B.
+    链表，计算和。
+    
