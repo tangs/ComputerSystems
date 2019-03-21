@@ -487,4 +487,10 @@ guarded-do;
     }
     B.
     链表，计算和。
-    
+
+3.43:
+    up->t1.v            short       movw 8(%rdi),%ax   movw %ax,(%si)
+    &up->t1.w           char*       leaq 10(%rdi),%rax  movq %rax,(%rsi)
+    up->t2.a            int*        movq %rdi,(%rsi)
+    up->t2.a[up->t1.u]  int         movq (%rdi),%rax    movl (%rdi, %rax, 4),%eax   movl %eax,(%rsi)
+    *up->t2.p           char        movq 8(%rdi),%rax   movb (%rax),%al             movb %al,(%sil)
