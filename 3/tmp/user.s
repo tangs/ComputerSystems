@@ -11,6 +11,7 @@ _func:                                  ## @func
 	movq	%rsp, %rbp
 	movl    (%rdi), %eax
     addl    4(%rdi), %eax
+    cltq
     leaq    8(%rdi, %rax, 4), %rax
     movq    %rax, 16(%rdi)
 	popq	%rbp
