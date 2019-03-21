@@ -18,6 +18,20 @@ int var_ele(long n, int A[n][n], long i, long j) {
     return A[i][j];
 }
 
+struct A {
+    char c;
+    short s;
+    int i;
+    long l;
+};
+
+struct B {
+    long l;
+    int i;
+    short s;
+    char c;
+};
+
 int main() {
     int a[N][N] = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
     fix_set_diag_opt(a, 10);
@@ -33,6 +47,9 @@ int main() {
     memset(arr, 1, len * sizeof(int));
     printf("%d \n", var_ele(3, arr, 1, 1));
     printf("%d \n", var_ele(3, arr, 1, 1) == 0x01010101);
+    printf("%lu %lu\n", sizeof(struct A), sizeof(struct B));
+    struct A a1;
+    printf("%p %p\n", &a1.c, &a1.s);
     
     return 0;
 }
