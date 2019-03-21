@@ -511,3 +511,22 @@ guarded-do;
     E.
         0(20)           24(16)      40(8)
         struct P3[2]    struct P2
+
+3.45:
+    A.
+        0(8)        8(2)        16(8)       24(1)       28(4)       32(1)       40(8)       48(4)       56(8)
+        a(char*)    b(short)    c(double)   d(char)     e(float)    f(char)     g(long)     h(int)
+    B.
+        56
+    C.
+        struct {
+            char d;             // 0(1)
+            char f;             // 1(1)
+            short b;            // 2(2)
+            float e;            // 4(4)
+            int h;              // 8(4)
+            double c;           // 16(8)
+            long g;             // 24(8)
+            char* a;            // 32(8)
+        };
+        40(8)
