@@ -549,3 +549,6 @@ guarded-do;
         a.strlen()函数不会计算结尾的\0  
         b.未检查gets()返回是否为NULL.
     
+3.47:
+    A.  2^13
+    B.  2^6
