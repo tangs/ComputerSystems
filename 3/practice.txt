@@ -620,13 +620,24 @@ guarded-do;
 
 3.53:
     funct1:
-        vcvtsi2ssq %rsi, %xmm2, %xmm2       // convert long to float (第二个非浮点参数)
-        vaddss %xmm0, %xmm3, %xmm0          // %xmm0 = %xmm0 + (float)%rsi
-        vcvtsi2ss %edi, %xmm2, %xmm2        // convert int to float (第一个非浮点参数)      p
-        vdivss %xmm0, %xmm2, %xmm0          // %xmm0 = %xmm2 / %xmm0
-        vcvtss2sd	%xmm0, %xmm0, %xmm0     // vonert float to double
+        vcvtsi2ssq  %rsi, %xmm2, %xmm2      // convert long to float (第二个非浮点参数)
+        vaddss      %xmm0, %xmm3, %xmm0     // %xmm0 = %xmm0 + (float)%rsi
+        vcvtsi2ss   %edi, %xmm2, %xmm2      // convert int to float (第一个非浮点参数)      p
+        vdivss      %xmm0, %xmm2, %xmm0     // %xmm0 = %xmm2 / %xmm0
+        vcvtss2sd   %xmm0, %xmm0, %xmm0     // vonert float to double
 
 
     arg1_t      arg2_t      arg3_t      arg4_t
     int         long        float       double
     int         float       long        double
+
+3.54:
+    funct2:
+        vcvtsi2ss   %edi, %xmm2, %xmm2      // convert int to float, %xmm2 = (float)x
+        vmulss      %xmm1, %xmm2, %xmm1     // %xmm1 = (float)x*y
+        vcvtss2sd   %xmm1, %xmm1, %xmm2     // %xmm2 = (double)((float)x*y)
+        vcvtsi2sdq  %rsi, %xmm1, %xmm1      // convert long to double, %xmm1 = (double)z
+        vdivsd      %xmm1, %xmm0, %xmm0     // %xmm0 = w/(dobule)z
+        vsubsd      %xmm0, %xmm2, %xmm0     // %xmm0 = (double)((float)x*y) - w/(dobule)z
+
+    return x*y - w/z;
