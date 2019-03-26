@@ -641,3 +641,11 @@ guarded-do;
         vsubsd      %xmm0, %xmm2, %xmm0     // %xmm0 = (double)((float)x*y) - w/(dobule)z
 
     return x*y - w/z;
+
+3.55:
+    low 4 bytes: 0x00000000
+    high 4 bytes: 0x40400000
+    指数段:0x404(1028),减去偏移1023 = 5
+    数字段:0 + 1 = 1
+    1 * 2^5 = 32
+
