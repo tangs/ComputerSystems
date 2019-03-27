@@ -681,3 +681,21 @@ guarded-do;
             return (float)c + 2 * (*dp);
         }
     }
+
+3.58:
+    decoude2:
+        subq    %rdx, %rsi      // y -= z
+        imulq   %rsi, %rdi      // x *= y. x = x * (y - z)
+        movq    %rsi, %rax      // %rax = y 
+        salq    $63, %rax       // %rax <<= 63
+        sarq    $63, %rax       // %rax >>= 63
+        xorq    %rdi, %rax      // %rax ^ %rdi
+        ret
+
+    long decode2(long x, long y, long z) {
+        if (y % 2 == 0) {
+            return x * (y - z);
+        } else {
+            return ~(x * (y - z));
+        }
+    }
