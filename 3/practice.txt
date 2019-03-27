@@ -656,3 +656,28 @@ guarded-do;
         #define EXPR(x) x = 0.0
     C.
         #define EXPR(x) x = -x
+
+3.57:
+    funct3:
+        vmovss      (%rdx), %xmm1           // %xmm1 = *dp
+        vcvtsi2sd   (%rdi), %xmm2, %xmm2    // %xmm2 = (double)(*ap)
+        vucomisd    %xmm2, %xmm0            // cmp b, %xmm2
+        jbe         .L8                     // jmp .L8 if <=
+        vcvtsi2ssq  %rsi, %xmm0, %xmm0      // %xmm0 = (float)c
+        vmulss      %xmm1, %xmm0, %xmm1     // %xmm1 = (float)c * (*dp)
+        vcvtss2sd   %xmm1, %xmm1, %xmm0     // convert to double
+        ret
+      .L8:
+        vaddss      %xmm1, %xmm1, %xmm1     // %xmm1 = %xmm1 * 2
+        vcvtsi2ssq  %rsi, %xmm0, %xmm0      // %xmm0 = (float)c
+        vaddss      %xmm1, %xmm0, %xmm0     // %xmm0 = (float)c + 2 * (*dp)
+        vcvtss2sd   %xmm0, %xmm0, %xmm0     // convert to double
+        ret
+
+    double funct3(int *ap, double b, long c, float *dp) {
+        if (b > (double)(*ap)) {
+            return (float)c * (*dp);
+        } else {
+            return (float)c + 2 * (*dp);
+        }
+    }
