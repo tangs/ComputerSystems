@@ -649,3 +649,10 @@ guarded-do;
     数字段:0 + 1 = 1
     1 * 2^5 = 32
 
+3.56:
+    A.
+        #define EXPR(x) x > 0 ? x : -x
+    B.
+        #define EXPR(x) x = 0.0
+    C.
+        #define EXPR(x) x = -x
