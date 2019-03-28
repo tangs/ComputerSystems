@@ -699,3 +699,59 @@ guarded-do;
             return ~(x * (y - z));
         }
     }
+
+3.59:
+    store_prod:
+        movq    %rdx, %rax          // %rax = y
+        cqto                        // convert y to 8 bytes, %rdx = yh, %rax = yl
+        movq    %rsi, %rcx          // %rcx = x
+        sarq    $63, %rcx           // %rcx = xh, %rsi = x
+        imulq   %rax, %rcx          // %rcx = y * xh
+        imulq   %rsi, %rdx          // %rdx = x * yh
+        addq    %rdx, %rcx          // %rcx = yl * xh + xl * yh
+        mulq    %rsi                // 
+        addq    %rcx, %rdx
+        movq    %rax, (%rdi)
+        movq    %rdx, 8(%rdi)
+        ret
+
+3.60:
+    long loop(long x, int n)
+    x in %rdi, n in %esi
+    loop:
+        movl    %esi, %ecx      // %ecx = n
+        movl    $1, %edx        // %edx = 1
+        movl    $0, %eax        // %eax = 0
+        jmp     .L2
+    .L3:
+        movq    %rdi, %r8       // %r8 = x
+        andq    %rdx, %r8       // %r8 = %r8 & %rdx
+        orq     %r8, %rax       // %rax = %r8
+        salq    %cl, %rdx       // %rdx = %rdx << %rcx
+    .L2:
+        testq   %rdx, %rdx      // test %rdx
+        jne     .L3             // if %rdx != 0 goto .L3
+    rep; ret
+
+    long loop(long x, int n) {
+        long result = 0;
+        long mask;
+        for (mask = 1; mask != 0; mask = mask << n) {
+            result |= x & mask;
+        }
+        return result;
+    }
+    A. 
+        x -> %rdi
+        n -> %esi
+        result -> %rax
+        mask -> %rdx
+    B.
+        result -> 0
+        mask -> 1
+    C.
+        mask != 0
+    D.
+        mask = mask << n
+    E.
+        result |= x & mask;
