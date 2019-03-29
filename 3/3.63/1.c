@@ -1,3 +1,3 @@
 long func(long x) {
-    return x * 15;
+    return x * 31;
 }
