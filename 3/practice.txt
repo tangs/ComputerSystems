@@ -804,3 +804,23 @@ guarded-do;
         }
         return result;
     }
+
+3.6.4:
+    A.
+        T D[R][C];
+        L = sizeof(T)
+        &D[i][j] = Xd + L(C * i + j)
+
+        T D[X][Y][Z];
+        L = sizeof(T);
+        &D[i][j][k] = Xd + L(Y * Z * i + Z * j + k);
+    B.
+        R = 7
+        S = 5
+        T = 13
+
+3.6.5:
+    A.  %rdx
+    B.  %rax
+    C.  15
+    
