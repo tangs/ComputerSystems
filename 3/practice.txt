@@ -845,3 +845,20 @@ guarded-do;
     
     #define NR(n) (3 * n)
     #define NC(n) (4 * n + 1)
+
+3.6.7:
+    A.
+                            返回地址
+                    8       
+                            保存的%rbp
+        桢指针%rbp   0       
+                    -40      
+                    -72
+                            z
+                    -80
+                            &z
+                    -88
+                            保存的%rsi(y)
+                    -96      
+                            保存的%rdi(x)
+        栈指针%rsp   -104  
