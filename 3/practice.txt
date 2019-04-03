@@ -862,3 +862,23 @@ guarded-do;
                     -96      
                             保存的%rdi(x)
         栈指针%rsp   -104  
+
+    B.
+        %rsp + 64
+3.6.8:
+    typedef struct {
+        int x[A][B];        // offset: 0, size = 4 * A * B. 176 < 4 * A * B <= 184 -> 44 < A * B <= 46
+        long y;             // offset: 184, size = 0
+    } str1;
+    typedef struct {
+        char array[B];      // offset: 0, size: 8bits. 4 < B <= 8
+        int t;              // offset: 8, size: 4
+        short s[A];         // offset: 12, size: 2 * A. 12 < size <= 20 . 6 < A <= 10
+        long u;             // offset: 32, size: 8
+    } str2;
+
+    44 < A * B <= 46
+    4 < B <= 8
+    6 < A <= 10
+
+    A = 9, B = 5
