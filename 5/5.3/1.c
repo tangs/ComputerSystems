@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-typedef long data_t;
+typedef double data_t;
 
 typedef struct {
     long len;
@@ -35,8 +35,8 @@ long vec_length(vec_ptr v) {
     return v->len;
 }
 
-#define IDENT 0
-#define OP +
+#define IDENT 1
+#define OP *
 
 void combine1(vec_ptr v, data_t *dest) {
     *dest = IDENT;
@@ -55,4 +55,14 @@ void combine2(vec_ptr v, data_t *dest) {
         *dest = *dest OP *p;
         ++p;
     }
+}
+
+void combine4(vec_ptr v, data_t *dest) {
+    data_t acc = IDENT;
+    long len = vec_length(v);
+    data_t *data = v->data;
+    for (int i = 0; i < len; ++i) {
+        acc = acc OP data[i];
+    }
+    *dest = acc;
 }
